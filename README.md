@@ -3,6 +3,7 @@
 This project is a Flask microservice that detects objects in images using YOLOv5. You can send Base64 encoded image files to an API in JSON format to receive the detected objects.
 
 ## File Structure
+```
 ├── images
 │   ├── train.jpg
 │   ├── zidane.jpg
@@ -17,38 +18,42 @@ This project is a Flask microservice that detects objects in images using YOLOv5
 ├── yolov5s.pt
 ├── requirements.txt
 └── README.md
-
+```
 ### Installing Required Libraries ###
 
 ### 1. Creating and Activating a Virtual Environment
 
 # First, we need to create a virtual environment to isolate our dependencies. To create a new virtual environment:
-
-bash
-python -m venv venv     
-
+```
+    bash
+    python -m venv venv     
+```
 # 1. To activate the virtual environment:
-bash
-source venv/bin/activate  # macOS or Linux
-.\venv\Scripts\activate   # Windows
-
+```
+    bash
+    source venv/bin/activate  # macOS or Linux
+    .\venv\Scripts\activate   # Windows
+```
 # 2. Installing Requirements
 
 # To install the dependencies:
-bash
-pip install -r requirements.txt
-
+    bash
+    ```
+    pip install -r requirements.txt
+    ```
 # 3. Deactivating the Virtual Environment
 
 # To deactivate the virtual environment when we are done:
-bash
-deactivate
+    bash
+    ```
+    deactivate
+    ```
 
 #### Base64 Conversion: ###
 Open the jpg_to_base64.py file and enter the name of any photo from the images directory. Once you enter the name, the Base64 encoded string of the photo will be saved in the encoded_images directory as encoded_image_<name>.txt (where <name> is the name you entered).
 
 #### File Structure After Base64 Conversion ####
-
+```
 ├── encoded_images
 │   ├── encoded_image_<name>.txt
 │   └── encoded_image_<name>.txt
@@ -66,6 +71,7 @@ Open the jpg_to_base64.py file and enter the name of any photo from the images d
 ├── yolov5s.pt
 ├── requirements.txt
 └── README.md
+```
 
 ### Running the Flask Application: ###
 # Run the app.py file and use the following command to verify that port 5000 is active:
@@ -119,6 +125,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"image\": \"$(cat encoded
 }
 # Zidane:
 bash
+```
 curl -X POST -H "Content-Type: application/json" -d "{\"image\": \"$(cat encoded_images/encoded_image_zidane.txt | tr -d '\n')\"}" http://localhost:5000/detect/person
 {
     “image”: “iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=”,
@@ -144,9 +151,11 @@ curl -X POST -H "Content-Type: application/json" -d "{\"image\": \"$(cat encoded
     }
   ]
 }
+```
 # Bus
 Since this photo includes a person, I will configure the system to detect all objects instead of specifying a <label>.
 bash
+```
 curl -X POST -H "Content-Type: application/json" -d "{\"image\": \"$(cat encoded_images/encoded_image_bus.txt | tr -d '\n')\"}" http://localhost:5000/detect
 {
     “image”: “iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=”,
@@ -215,40 +224,47 @@ curl -X POST -H "Content-Type: application/json" -d "{\"image\": \"$(cat encoded
     }
   ]
 }
+```
 Developer Notes:
 
 This project uses the YOLOv5 model for object detection. You can find the trained weights of the model in the file yolov5s.pt in the project directory. To convert images to Base64 format and send them to the API, you can use the jpg_to_base64.py file.
 
-Yukarıdaki README dosyası, projenizin kurulumu, kullanımı ve test edilmesi için kapsamlı talimatlar sağlar. Ayrıca, API'nin nasıl kullanılacağını ve hangi sonuçların beklendiğini açıklar.
-
-Bu belgeleri oluşturduktan sonra, projenizin versiyon kontrolünü yönetmek için Git kullanımına geçebilirsiniz.
+After creating these documents, you can proceed to use Git for managing version control of your project.
 
 ### Git Usage:
 
 1. ## Creating and Cloning a New Git Repository ##
+```
     bash
     git init
     git add .
     git commit -m "Initial commit"
     git remote add origin https://github.com/user/project-name.git
     git push -u origin main
+```
 
 2. ## Creating a New Branch and Making Changes ##
+```
     bash
     git checkout -b new-property
-
+```
 3. ## Committing Changes ##
+```
     bash
     git add .
     git commit -m "Add The New Property"
+```
 
 4. ## Merging the Branch into the Main Branch ##
+```
     bash
     git checkout main
     git merge new-property
+```
 
 5. ## Pushing Changes to GitHub ##
+```
     bash
     git push origin main
-
+```
 By following these steps, you can document your project and manage it efficiently with Git.
