@@ -1,0 +1,9 @@
+flask
+pillow
+numpy
+torch
+onnx
+onnxruntime
+opencv-python-headless
+pandas
+requests

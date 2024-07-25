@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  yolo-microservice:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    networks:
+      - yolo-network
+    # YOLO mikroservisi, nesne algılama işlemlerini gerçekleştiren ana servis.
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - yolo-network
+    # Redis servisi, YOLO mikroservisinin hızlı veri erişimi ve önbellekleme işlemleri için kullanılır.
+
+networks:
+  yolo-network:
+    driver: bridge
+    # Mikroservisler arasında izole edilmiş bir ağ sağlayan özel bir network.

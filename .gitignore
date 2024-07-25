@@ -1,0 +1,15 @@
+venv/
+.venv/
+
+encoded_images/
+
+__pycache__/
+*.py[cod]
+*.so
+
+.DS_Store
+
+*.log
+
+.pytest_cache/
+.coverage
