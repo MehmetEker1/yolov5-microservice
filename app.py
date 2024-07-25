@@ -19,25 +19,25 @@ def image_to_base64(img):
 @app.route('/detect/<label>', methods=['POST'])
 def detect(label):
     data = request.json
-    image_data = data.get('image')  # base64 kodlu görüntü
+    image_data = data.get('image')  # Base64 encoded image
     if not image_data:
         return jsonify({'error': 'No image provided'}), 400
 
-    # Base64'ü görüntüye dönüştür
+    # Convert Base64 to image
     image_bytes = base64.b64decode(image_data)
     image = Image.open(BytesIO(image_bytes))
 
-    # Tahmin yap
+    # Make a prediction
     results = model(image, size=640)
 
-    # Sonuçları JSON formatına dönüştür
+    # Convert the results to JSON format
     predictions = results.pandas().xyxy[0].to_dict(orient='records')
 
-    # Etikete göre filtreleme
+    # Filter by label
     if label:
         predictions = [p for p in predictions if p['name'] == label]
     
-    # Sonuçları JSON olarak döndür
+    # Return the results as JSON
     response = {
         'image': image_to_base64(image),
         'objects': predictions,

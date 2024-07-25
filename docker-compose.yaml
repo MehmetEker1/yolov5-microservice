@@ -9,15 +9,15 @@ services:
       - .:/app
     networks:
       - yolo-network
-    # YOLO mikroservisi, nesne algılama işlemlerini gerçekleştiren ana servis.
+    # The YOLO microservice is the main service that performs object detection operations.
 
   redis:
     image: "redis:alpine"
     networks:
       - yolo-network
-    # Redis servisi, YOLO mikroservisinin hızlı veri erişimi ve önbellekleme işlemleri için kullanılır.
+    #The Redis service is used for fast data access and caching operations for the YOLO microservice.
 
 networks:
   yolo-network:
     driver: bridge
-    # Mikroservisler arasında izole edilmiş bir ağ sağlayan özel bir network.
+    # A private network providing an isolated network between microservices.

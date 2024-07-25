@@ -1,21 +1,21 @@
 import base64
 import os
 
-# Mevcut çalışma dizinine göre göreli yollar kullan
+# Use relative paths based on the current working directory.
 base_dir = os.getcwd()
 images_dir = os.path.join(base_dir, 'images')
 encoded_dir = os.path.join(base_dir, 'encoded_images')
 
-# Eğer encoded_images klasörü yoksa oluştur
+# If the encoded_images directory does not exist, create it.
 if not os.path.exists(encoded_dir):
     os.makedirs(encoded_dir)
 
 while True:
-    yol = input("Images klasörü içerisinden isim aynı olmak şartıyla fotoğraf seçin: ")
+    yol = input("Select a photo from the Images directory with the same name:")
     image_path = os.path.join(images_dir, f'{yol}.jpg')
 
     if not os.path.exists(image_path):
-        print("Hata: Seçilen dosya Images klasörü içinde bulunamadı. Lütfen geçerli bir dosya ismi girin.")
+        print("Error: The selected file was not found in the Images directory. Please enter a valid file name.")
         continue
 
     output_path = os.path.join(encoded_dir, f'encoded_image_{yol}.txt')
@@ -26,7 +26,7 @@ while True:
     with open(output_path, 'w') as output_file:
         output_file.write(encoded_string)
 
-    print(f"Base64 kodu {output_path} dosyasına yazıldı.")
-    cikis = input("Çıkmak istemiyorsanız Herhangi bir tuşu, programı sonlandırmak için 'e' veya 'E' tuşlayın: ")
+    print(f"The Base64 code has been written to the {output_path} file")
+    cikis = input("Press any key to continue, or press ‘e’ or ‘E’ to exit the program:")
     if cikis.lower() == 'e':
         break
